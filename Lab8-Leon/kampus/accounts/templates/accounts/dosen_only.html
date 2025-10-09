@@ -1,0 +1,35 @@
+<!-- accounts/templates/accounts/dosen_only.html -->
+{% extends "base.html" %}
+{% block title %}Area Dosen - Kampus{% endblock %}
+{% block content %}
+  <h1 class="h4 mb-3">Area Khusus Dosen</h1>
+  <p class="text-muted">Hanya user dengan role <code>DOSEN</code> yang bisa mengakses halaman ini.</p>
+  <p>Selamat datang, {{ user.username }}!</p>
+
+  <div class="text-center mb-4">
+      <h2>Mahasiswa</h2>
+  </div>
+
+  <div class="table-responsive">
+      <table class="table table-bordered table-hover text-center">
+          <thead class="table-dark">
+              <tr>
+                  <th>Nama</th>
+                  <th>Nilai</th>
+              </tr>
+          </thead>
+          <tbody>
+              {% for mhs in mahasiswa_list %}
+              <tr>
+                  <td>{{ mhs.user.username }}</td>  
+                  <td>{{ mhs.nilai }}</td>   
+              </tr>
+              {% empty %}
+              <tr>
+                  <td colspan="5" class="text-muted">Belum ada data mahasiswa.</td>
+              </tr>
+              {% endfor %}
+          </tbody>
+      </table>
+  </div>
+{% endblock %}
